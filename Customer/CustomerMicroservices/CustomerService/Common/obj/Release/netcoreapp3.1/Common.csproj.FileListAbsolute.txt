@@ -1,0 +1,13 @@
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\bin\Release\netcoreapp3.1\Common.deps.json
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\bin\Release\netcoreapp3.1\Common.runtimeconfig.json
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\bin\Release\netcoreapp3.1\Common.runtimeconfig.dev.json
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\bin\Release\netcoreapp3.1\Common.dll
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\bin\Release\netcoreapp3.1\Common.pdb
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\obj\Release\netcoreapp3.1\Common.csproj.AssemblyReference.cache
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\obj\Release\netcoreapp3.1\Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\obj\Release\netcoreapp3.1\Common.AssemblyInfoInputs.cache
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\obj\Release\netcoreapp3.1\Common.AssemblyInfo.cs
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\obj\Release\netcoreapp3.1\Common.csproj.CoreCompileInputs.cache
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\obj\Release\netcoreapp3.1\Common.dll
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\obj\Release\netcoreapp3.1\Common.pdb
+D:\UseCase\Customer\CustomerMicroservices\CustomerService\Common\obj\Release\netcoreapp3.1\Common.genruntimeconfig.cache

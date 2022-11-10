@@ -1,0 +1,88 @@
+
+<div class="container-lg">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h4>Service Request Details</h4></div>                    
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead class="table-primary table-striped">
+                    <tr>
+                        <th>Id</th>
+                        <th>SrId</th>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>PanCard</th>
+                        <th>PhoneNumber</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                        <th>Address</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-light table-striped">
+                        <tr *ngFor="let srdata of PendingRequestModel;index as i">                          
+                             <td>{{i+1}}</td>
+                             <td>{{srdata.srId}}</td>
+                             <td>{{srdata.cusromername}}</td>
+                             <td>{{srdata.country}}</td>
+                             <td>{{srdata.state}}</td>
+                             <td>{{srdata.pancard}}</td>
+                             <td>{{srdata.phonenumber}}</td>
+                             <td>{{srdata.status}}</td>
+                            <td>
+                                <textarea   placeholder="Content"  type="text">{{srdata.description}}</textarea>
+                            </td>
+                            <td>
+                                <textarea   placeholder="Content"  type="text">{{srdata.address}}</textarea>
+                            </td>
+                            
+                             <td>
+                               
+                                <a title="Approve" data-toggle="tooltip" (click)="approveGrid(srdata.srId)"><i class="fa fa-check-square" style="color: green;font-size: 30px;cursor: pointer;"></i></a>
+                                <a title="Reject" data-toggle="tooltip" (click)="rejectGrid(srdata.srId)"><i class="fa fa-times-rectangle" style="color: red;font-size: 30px;cursor: pointer;"></i></a>
+                            </td> 
+                            
+                         </tr>
+                         <div>
+                            <img *ngIf="showLoader" class="mx-auto d-block" src="/assets/loading-gif.gif" width="60" height="60" alt="loader">
+                        </div>
+                         <tr *ngIf="PendingRequestModel?.length===0">
+                             <td colspan="8">
+                                 No books found
+                             </td>
+                         </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>     
+
+
+<div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':displayStyle}">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+	<div class="modal-header">
+		<h4 class="modal-title">{{popupHeaderMsg}}</h4>
+	</div>
+	<div class="modal-body">
+		<p>{{popupDisplayMsg}}</p>
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-danger"
+				(click)="closePopup()">
+		Close
+		</button>
+	</div>
+	</div>
+</div>
+</div>

@@ -1,0 +1,187 @@
+<div class="row">
+    <div class="col-lg-2 col-xl-2 col-md-4 col-sm-4">       
+        <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3">
+            <a class="navbar-brand">{{customerName}}</a>           
+            <button class="btn btn-secondary cursorpoint" style="border-radius: 0%;" (click)="UpdateProfile()">Edit profile</button>
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link cursorpoint" [class]="navitem1" (click)="navigateCreateRequest()">Create Request</a>             
+              <a class="nav-link cursorpoint" [class]="navitem2" (click)="GetCloseServiceRequest()">Close Request</a>
+              <a class="nav-link cursorpoint" [class]="navitem3" (click)="navigatepeningRequest()">Pending Request</a>              
+            </nav>
+          </nav>   
+          <button (click)="exportAsXLSX()"  style="border-radius: 0%;" class="btn btn-info mb-4 mt-2 cursorpoint">Download All Requests</button>  
+          <div>
+            <img *ngIf="showExcelLoader" class="mx-auto d-block" src="/assets/loading-gif.gif" width="60" height="60" alt="loader">
+        </div>    
+    </div>
+
+    <div class="col-lg-10 col-xl-10 col-md-6 col-sm-6">       
+        <div *ngIf="isUpdateRequest;else UpdateRequest_content">            
+            <app-createrequest [grid-data]="GetServiceRequestDataModel" (create-request)="createRequestData($event)" (update-request)="UpdateRequestData($event)"></app-createrequest>
+        </div>        
+        <ng-template #UpdateRequest_content>
+            <div>           
+                <section class="h-100 gradient-custom">
+                    <div class="container py-5 h-100">
+                        <div  class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col-lg-10 col-xl-10">  
+                                <div *ngIf="isPeningRequest;">
+                                    <div class="mb-2">
+                                        <form #searchData = "ngForm" (ngSubmit) = "searchDataSubmit(searchData.value)" >
+                                            <input type = "text" name = "searchid" placeholder = "Search Request Id" autocomplete="off" ngModel>                                  
+                                            <input type = "submit" value = "Search">
+                                         </form>
+                                    </div> 
+                                </div>                        
+                                <div class="card" style="border-radius: 10px;">
+                                    <div *ngIf="isCloseRequest;">
+                                        <div class="card-header px-4 py-3">
+                                            <h5 class="text-muted mb-0">Close Request Data For, <span style="color: #a8729a;">{{customerName}}</span>!
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="isPeningRequest;">                                       
+                                        <div class="card-header px-4 py-3">
+                                            <h5 class="text-muted mb-0">Pending Request Data For, <span style="color: #a8729a;">{{customerName}}</span>!
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="isSearchRequest;">
+                                        <div class="card-header px-4 py-3">
+                                            <h5 class="text-muted mb-0">Search Request Data For, <span style="color: #a8729a;">{{customerName}}</span>!
+                                            </h5>
+                                        </div>
+                                    </div>   
+                                    <div>
+                                        <img *ngIf="showLoader" class="mx-auto d-block" src="/assets/loading-gif.gif" width="60" height="60" alt="loader">
+                                    </div>                                 
+                                    <table>
+                                        <tr *ngFor="let pending of PendingRequestModel">
+                                            <div class="card-body p-4">
+                                                <div class="card shadow-0 border">
+                                                    <div class="card-body">                             
+                                                        <div class="row">
+                                                            <span><em class="fw-bold">Service Request ID: </em>{{pending.srId}}</span>
+                                                            <span><em>Issue Type: </em>{{pending.category}}</span>                                                  
+                                                            <div class="col-md-4 px-4">
+                                                                <span class="price"><small><em>AssignTo: </em></small>{{pending.assignto}}</span>
+                                                            </div>
+                                                            <div class="col-md-4 px-4">
+                                                                <span class="price"><small><em>Status: </em></small>{{pending.status}}</span>
+                                                            </div>
+                                                            <div class="col-md-4 px-4">
+                                                                <span class="price"><small><em>Country: </em></small>{{pending.country}}</span>
+                                                            </div>                                           
+                                                           
+                                                        </div>
+                                                        <div class="row">                                                                                             
+                                                            <div class="col-md-4 px-4">
+                                                                <span class="price"><small><em>State: </em></small>{{pending.state}}</span>
+                                                            </div>
+                                                            <div class="col-md-4 px-4">
+                                                                <span class="price"><small><em>Request Date: </em></small>{{pending.date}}</span>
+                                                            </div>
+                                                            <div class="col-md-4 px-4">
+                                                                <span class="price"><small><em>Address: </em></small>{{pending.address}}</span>
+                                                            </div>
+                                                            <span><em>Description: </em>{{pending.description}}</span>
+                                                        </div>
+                                                        <div *ngIf="isCloseRequest;else close_content">
+                                                        <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                                                        <div>
+                                                            <div class="row d-flex align-items-center">
+                                                                <div class="col-md-2">
+                                                                    <p class="text-muted mb-0 small"></p>
+                                                                </div>
+                                                                <div class="col-md-10">
+                                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                                        <button class="btn btn btn-success" type="button"  (click)="closegridReopen(pending.srId)">ReOpen</button>                                                  
+                                                                        <button class="btn btn-warning" type="button" (click)="closegridDelete(pending.srId)">Delete</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ng-template #close_content></ng-template>
+                                                    <div *ngIf="isPeningRequest;else pending_content">
+                                                        <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                                                        <div >
+                                                            <div class="row d-flex align-items-center">
+                                                                <div class="col-md-2">
+                                                                    <p class="text-muted mb-0 small"></p>
+                                                                </div>
+                                                                <div class="col-md-10">
+                                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                                        <button class="btn btn-primary" type="button" (click)="pendinggridEdit(pending.srId)">Edit</button>                                                  
+                                                                        <button class="btn btn-warning" type="button"  (click)="pendinggridDelete(pending.srId)">Delete</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ng-template #pending_content></ng-template>
+                                                    <div *ngIf="isSearchRequest;else search_content">
+                                                        <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                                                        <div >
+                                                            <div class="row d-flex align-items-center">
+                                                                <div class="col-md-2">
+                                                                    <p class="text-muted mb-0 small"></p>
+                                                                </div>
+                                                                <div class="col-md-10">
+                                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                                        <button class="btn btn-success" type="button" (click)="closegridReopen(pending.srId)">ReOpen</button>  
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ng-template #search_content></ng-template>
+                                                    </div>
+                                                </div>
+                                            </div>
+                        
+                                        </tr>                                       
+                                        <tr *ngIf="PendingRequestModel?.length===0">
+                                            <td colspan="8">
+                                                No Data found
+                                            </td>
+                                        </tr>
+                                    </table>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>   
+        </ng-template>
+       
+       
+    </div>
+   
+    <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{popupHeaderMsg}}</h4>
+        </div>
+        <div class="modal-body">
+            <p>{{popupDisplayMsg}}</p>
+    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success"
+                    (click)="closePopup()">
+            Continue
+            </button>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+  

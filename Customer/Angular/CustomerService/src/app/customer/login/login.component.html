@@ -1,0 +1,81 @@
+<div>
+  <div class="d-flex justify-content-center align-items-center">
+    <img *ngIf="showLoader"  src="/assets/loading-gif.gif" width="60" height="60" alt="loader">
+</div>
+<form [formGroup] = "formdata" (ngSubmit) = "onClickLoginSubmit(formdata.value)"> 
+  <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-light" style="border-radius: 1rem;">
+              <div class="card-body p-5">
+    
+                <div class="mb-md-3 mt-md-2 pb-3">
+    
+                  <h2 class="fw-bold mb-2 text-uppercase text-center">Login</h2>
+                  
+                  <div *ngIf="isemailLogin;else email_content">
+                    <p class="mb-4 text-center validspan">Your enter your email or password wrong!</p>
+                  </div>                      
+                  <ng-template #email_content>
+                    <p class="mb-4 text-center">Please enter your email and password!</p>
+                  </ng-template> 
+    
+                  <div class="form-group mt-1">               
+                      <input name="email" formControlName="email" class="form-control" placeholder="Enter Email" type="email" (keyup)="changeLoginEmail()" autocomplete="off" ngModel>                     
+                        <span class="validspan" style="text-align: left;" *ngIf="!formdata.controls['email'].valid && 
+                      formdata.controls['email']?.touched"> Please enter a valid email</span>
+                     
+                  </div>
+    
+                  <div class="form-group mt-1">                
+                      <input name="password" formControlName="password" class="form-control"  placeholder="Enter password" type="password" autocomplete="off" ngModel>
+                      <span class="validspan" *ngIf="!formdata.controls['password'].valid && 
+                      formdata.controls['password']?.touched"> Please enter a valid password</span>
+                  </div>      
+                  <div class="form-group mt-2 text-center">
+                      <input type = "submit"  class="btn btn-primary" [disabled]="!(formdata.valid)" value = "Log In">
+                  </div>                        
+    
+                </div>
+    
+                <div>
+                  <p class="mb-0">Don't have an account? <a class="fw-bold" (click)="navigateRegister()">Sign Up</a>
+                  </p>
+                </div>
+    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </form>
+</div>  
+
+   
+  <div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">{{popupHeaderMsg}}</h4>
+    </div>
+    <div class="modal-body">
+      <p>{{popupDisplayMsg}}</p>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success"
+          (click)="closePopup()">
+      Continue
+      </button>
+    </div>
+    </div>
+  </div>
+  </div>
+  
+

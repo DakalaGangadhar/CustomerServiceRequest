@@ -1,0 +1,30 @@
+<div class="container-fluid text-center">    
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+        <p><a [routerLink]="['home/login']">Customer Login</a></p>
+        <p><a [routerLink]="['home/registration']">Customer SignUp</a></p>
+        <p><a [routerLink]="['admin/login']">Admin Login</a></p>
+      </div>
+      <div class="col-sm-8 text-left"> 
+        <h1>Welcome</h1>
+        <p>A service request may be defined as a formal request for service from an employee, customer, or vendor. These requests are necessary for initiating a pre-defined and agreed-upon service action as a normal part of service delivery. More simply put, service requests generally involve procuring or requesting access to something that is not currently available to the employee. As previously stated, these are formal requests following an established pattern, and relate to services that are already clearly defined. Often, services are detailed in a service catalog, and employees can request access through their employee portal.</p>
+        <hr>
+        <h3>Test</h3>
+        <p>Lorem ipsum...</p>
+      </div>
+      <div class="col-sm-2 sidenav">
+        <div class="well">
+          <p>ADS</p>
+        </div>
+        <div class="well">
+          <p>ADS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="container-fluid text-center">
+    <p>Footer Text</p>
+  </footer>
+
+  <router-outlet></router-outlet>

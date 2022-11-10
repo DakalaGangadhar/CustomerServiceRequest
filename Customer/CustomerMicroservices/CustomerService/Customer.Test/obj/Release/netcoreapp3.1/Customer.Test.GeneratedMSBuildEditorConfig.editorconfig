@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = Customer.Test
+build_property.ProjectDir = D:\UseCase\Customer\CustomerMicroservices\CustomerService\Customer.Test\

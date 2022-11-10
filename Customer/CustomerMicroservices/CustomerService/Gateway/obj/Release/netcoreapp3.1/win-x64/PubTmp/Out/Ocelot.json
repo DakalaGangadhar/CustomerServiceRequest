@@ -1,0 +1,183 @@
+{
+  "Routes": [
+    //--------customer-----------
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/registration/customer-registration",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerService",
+      "UpstreamPathTemplate": "/api/gateway/registration/customer-registration",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/registration/customer-login",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerService",
+      "UpstreamPathTemplate": "/api/gateway/registration/customer-login",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/registration/customer-country",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerService",
+      "UpstreamPathTemplate": "/api/gateway/registration/customer-country",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/registration/customer-state",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerService",
+      "UpstreamPathTemplate": "/api/gateway/registration/customer-state",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/registration/customer-district",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerService",
+      "UpstreamPathTemplate": "/api/gateway/registration/customer-district",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/registration/customer-getcustomerdata",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerService",
+      "UpstreamPathTemplate": "/api/gateway/registration/customer-getcustomerdata",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/registration/customer-update",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerService",
+      "UpstreamPathTemplate": "/api/gateway/registration/customer-update",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+
+    //--------------customer request service--------------
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/servicerequest/customer-servicerequestcategory",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/servicerequest/customer-servicerequestcategory",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/servicerequest/customer-createservicerequest",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/servicerequest/customer-createservicerequest",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/servicerequest/customer-getpendingservicerequest",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/servicerequest/customer-getpendingservicerequest",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/servicerequest/customer-closesearch",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/servicerequest/customer-closesearch",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/servicerequest/customer-reopen",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/servicerequest/customer-reopen",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/servicerequest/customer-servicerequestdelete",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/servicerequest/customer-servicerequestdelete",
+      "UpstreamHttpMethod": [ "Delete" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/servicerequest/customer-getservicerequestdata",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/servicerequest/customer-getservicerequestdata",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/ServiceRequest/customer-updateservicerequest",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/servicerequest/customer-updateservicerequest",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/servicerequest/customer-getallservicerequest",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/servicerequest/customer-getallservicerequest",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/servicerequest/customer-getpendingrejectservicerequest",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/servicerequest/customer-getpendingrejectservicerequest",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/admin/admin-login",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/admin/admin-login",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/admin/admin-data",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/admin/admin-data",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/admin/admin-approve",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/admin/admin-approve",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/admin/admin-reject",
+      "DownstreamScheme": "http",
+      "ServiceName": "customerrequestService",
+      "UpstreamPathTemplate": "/api/gateway/admin/admin-reject",
+      "UpstreamHttpMethod": [ "Put" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": "8500",
+      "Type": "Consul"
+    }
+  }
+}
+

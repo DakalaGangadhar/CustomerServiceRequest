@@ -1,0 +1,186 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">             
+              <div *ngIf="isbtnFlag;else headerdata_content">                   
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Update Your Details</h3>
+            </div>                
+            <ng-template #headerdata_content>
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+            </ng-template>
+              <form [formGroup] ="RegistrationModel.formCustomerGroup">
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+  
+                    <div class="form-group mt-1"> 
+                       <input [(ngModel)]="RegistrationModel.CustomerName" formControlName="CustomerName"  class="form-control" placeholder="Enter Name" type="text"> 
+   
+                      <span class="validspan" style="text-align: left;" *ngIf="!RegistrationModel.formCustomerGroup.controls['CustomerName'].valid && 
+                        RegistrationModel.formCustomerGroup.controls['CustomerName']?.touched"> Please enter a valid name</span>                
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-group mt-1"> 
+                      <input [(ngModel)]="RegistrationModel.CustomerEmail" formControlName="CustomerEmail" class="form-control" placeholder="Enter Email" type="email" (keyup)="changeEmail()" autocomplete="off">  
+                      <div *ngIf="isemailFlag;else emailvalid_content">
+                        <span class="validspan" style="text-align: left;"> Used email id. Please try with different mail id</span>
+                      </div>                      
+                      <ng-template #emailvalid_content>
+                        <span class="validspan" style="text-align: left;" *ngIf="!RegistrationModel.formCustomerGroup.controls['CustomerEmail'].valid && 
+                        RegistrationModel.formCustomerGroup.controls['CustomerEmail']?.touched"> Please enter a valid email</span>
+                      </ng-template>                   
+                   </div>
+  
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div class="form-group mt-1">
+                      <input [(ngModel)]="RegistrationModel.CustomerPassword" formControlName="CustomerPassword" class="form-control" placeholder="Enter Password" type="password" minlength="4" maxlength="10">  
+                        <span class="validspan" style="text-align: left;" *ngIf="!RegistrationModel.formCustomerGroup.controls['CustomerPassword'].valid && 
+                        RegistrationModel.formCustomerGroup.controls['CustomerPassword']?.touched"> Please enter numbers. minimum 4 and maximum 10 numbers. like 1234).</span>                     
+                   </div>
+  
+                  </div>      
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div class="form-group mt-1">
+                      <input [(ngModel)]="RegistrationModel.ConfirmCustomerPassword" formControlName="ConfirmCustomerPassword" class="form-control" placeholder="Confirm Password" type="password">  
+                        <span class="validspan" style="text-align: left;" *ngIf="!RegistrationModel.formCustomerGroup.controls['ConfirmCustomerPassword'].valid && 
+                        RegistrationModel.formCustomerGroup.controls['ConfirmCustomerPassword']?.touched"> Password not matching</span>                     
+               </div>
+  
+                  </div>              
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div class="form-group mt-1"> 
+                      <input [(ngModel)]="RegistrationModel.CustomerPhoneNumber" formControlName="CustomerPhoneNumber" class="form-control" placeholder="Enter Phone Number" type="text" maxlength="10">  
+                        <span class="validspan" style="text-align: left;" *ngIf="!RegistrationModel.formCustomerGroup.controls['CustomerPhoneNumber'].valid && 
+                        RegistrationModel.formCustomerGroup.controls['CustomerPhoneNumber']?.touched"> Please enter a valid phone number</span>                     
+                  </div>
+                  </div>
+                  <div class="col-md-6 mb-4 pb-2">
+  
+                    <div class="form-group mt-1">  <input [(ngModel)]="RegistrationModel.CustomerPanCard" formControlName="CustomerPanCard" class="form-control" placeholder="Enter PAN Card" type="text"> 
+                        <span class="validspan" style="text-align: left;" *ngIf="!RegistrationModel.formCustomerGroup.controls['CustomerPanCard'].valid && 
+                        RegistrationModel.formCustomerGroup.controls['CustomerPanCard']?.touched"> Please enter a valid pan number</span>                      
+                    </div>
+  
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+                      <div class="form-group mt-1">
+                        <label>Please select  date of birth:</label>
+                        <input [(ngModel)]="RegistrationModel.CustomerDOB" formControlName="CustomerDOB"  class="form-control" placeholder="Date of Birth" type="date" max={{dataOfDate}}>  
+                        <span class="validspan" style="text-align: left;" *ngIf="!RegistrationModel.formCustomerGroup.controls['CustomerDOB'].valid && 
+                        RegistrationModel.formCustomerGroup.controls['CustomerDOB']?.touched"> Date of birth is required</span>             
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4 pb-2">
+    
+                      <div class="form-group mt-1">              
+                        <label></label>
+                          <select (change)="onchangeCountry($event)" [(ngModel)]="RegistrationModel.CustomerCountry" formControlName="CustomerCountry" placeholder="Select Country" class="form-control">
+                            
+                            <option value="">Select Country</option>
+                            <option *ngFor="let country of Countries" [value]="country.cId">{{country.countryname }}</option>
+                          </select>
+                          <span class="validspan" style="text-align: left;" *ngIf="!RegistrationModel.formCustomerGroup.controls['CustomerCountry'].valid && 
+                        RegistrationModel.formCustomerGroup.controls['CustomerCountry']?.touched"> Country is required</span>
+                                              
+                      </div>
+    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+                      <div class="form-group mt-1">
+                          <select  [(ngModel)]="RegistrationModel.CustomerState" formControlName="CustomerState" (change)="onchangeStates($event)" placeholder="Select State" class="form-control">                           
+                            <option value="">Select State</option>
+                            <option *ngFor="let state of States"  [value]="state.stateId">{{state.statename}}</option>
+                          </select>     
+                          <span class="validspan" style="text-align: left;" *ngIf="!RegistrationModel.formCustomerGroup.controls['CustomerState'].valid && 
+                        RegistrationModel.formCustomerGroup.controls['CustomerState']?.touched"> State is required</span>              
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4 pb-2">
+    
+                      <div class="form-group mt-1">   
+                          <select  [(ngModel)]="RegistrationModel.CustomerDistrict" formControlName="CustomerDistrict" placeholder="Select District" class="form-control">
+  
+                            <option value="">Select District</option>
+                            <option *ngFor="let district of Districts" [value]="district.districtId">{{district.districtname}}</option>
+                          </select>
+                          <span class="validspan" style="text-align: left;" *ngIf="!RegistrationModel.formCustomerGroup.controls['CustomerDistrict'].valid && 
+                        RegistrationModel.formCustomerGroup.controls['CustomerDistrict']?.touched"> District is required</span>
+                             
+                      </div>
+    
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+                      <div class="form-group mt-1">                
+                         <textarea [(ngModel)]="RegistrationModel.CustomerAddress" formControlName="CustomerAddress" class="form-control"  placeholder="Enter Address"  type="text"></textarea>
+                          <span class="validspan" style="text-align: left;" *ngIf="!RegistrationModel.formCustomerGroup.controls['CustomerAddress'].valid && 
+                          RegistrationModel.formCustomerGroup.controls['CustomerAddress']?.touched"> Address is required</span>                  
+                      </div>
+                    </div>
+                    
+                  </div>
+  
+                
+  
+                <div class="mt-1 pt-2">
+                  <div *ngIf="isbtnFlag;else button_content">                   
+                    <button type="button" class="btn btn-primary" (click)="UpdateCustomerProfile()" [disabled]="!(RegistrationModel.formCustomerGroup.valid)">Update Profile</button><span style="padding-right:5px;"></span>
+                    <button type="button" class="btn btn-secondary" (click)="closeUpdateCustomerProfile()">Close</button>
+                </div>                
+                <ng-template #button_content>
+                  <button type="button" class="btn btn-primary" (click)="registrationCustomer()" [disabled]="!(RegistrationModel.formCustomerGroup.valid)">Registration</button>
+                </ng-template>
+                  
+                </div>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>   
+  </section>
+  
+  <div>
+    <img *ngIf="showLoader" class="mx-auto d-block" src="/assets/loading-gif.gif" width="60" height="60" alt="loader">
+  </div>
+
+  <div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">{{popupHeaderMsg}}</h4>
+    </div>
+    <div class="modal-body">
+      <p>{{popupDisplayMsg}}</p>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success"
+          (click)="closePopup()">
+      Continue
+      </button>
+    </div>
+    </div>
+  </div>
+  </div>
